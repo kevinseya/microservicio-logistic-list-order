@@ -1,3 +1,5 @@
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 const express = require('express');
 const bodyParser = require('body-parser');
 const sequelize = require('./config/dbConfig'); 
@@ -5,6 +7,7 @@ const { makeExecutableSchema } = require('@graphql-tools/schema');
 const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
 const { graphqlHTTP } = require('express-graphql');
+
 
 
 const app = express();
@@ -24,7 +27,7 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 // Start server
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

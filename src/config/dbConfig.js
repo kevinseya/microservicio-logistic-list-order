@@ -1,13 +1,16 @@
 const { Sequelize } = require('sequelize');
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
-// Database connection setup
-const sequelize = new Sequelize('logistics_db', 'root', '1234', {
-    host: 'localhost',
-    dialect: 'mysql',
-});
-
-sequelize.authenticate()
-    .then(() => console.log('Database connected successfully'))
-    .catch(err => console.error('Unable to connect to the database:', err));
+const sequelize = new Sequelize(
+    process.env.DB_DATABASE,
+    process.env.DB_USER,
+    process.env.DB_PASS,
+    {
+        host: process.env.DB_HOST,
+        dialect: 'mysql',
+        logging: console.log
+    }
+);
 
 module.exports = sequelize;
