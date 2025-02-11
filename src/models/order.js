@@ -9,25 +9,44 @@ const Order = sequelize.define('Order', {
         defaultValue: DataTypes.UUIDV4, 
         primaryKey: true, 
     },
+    idCustomer: { 
+        type: DataTypes.UUID,
+        allowNull: false,
+    },
     senderName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
     },
     receiverName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
+    },
+    receiverPhone: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
     packageDetails: {
-        type: DataTypes.TEXT,
+        type: DataTypes.TEXT
     },
     shippingAddress: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
+    },
+    deliveryAddress: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    price: {
+        type: DataTypes.FLOAT
     },
     status: {
         type: DataTypes.STRING,
-        defaultValue: 'Pending',
+        defaultValue: 'Pending'
     },
+    active:  {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+    }
 });
 
 sequelize.sync({ force: false }) // Sync model with database
