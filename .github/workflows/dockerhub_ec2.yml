@@ -62,6 +62,6 @@ jobs:
             # Generate .env file
             sudo docker run -d --name logistic_list_order \
               --env-file .env \
-              -p 7000:7000 \
+              -p 7001:7001 \
               kevinseya/logistic_list_order:latest
           EOF
